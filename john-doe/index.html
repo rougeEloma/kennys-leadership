@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>John Doe, Marketing Director | Kenny's International</title>
+<link rel="icon" href="/assets/emblem.png">
+</head>
+<body>
+
+<meta name="description" content="Kenny's International, sharing the luxury of your life since 1993.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Jost:wght@300..600&display=swap">
+<style>
+:root{
+  /* Layout: gold-framed black opener, white content bands, black footer; the gold hairline is the one ornament */
+  --ink:#000;--paper:#fff;--gold:#C9A55C;--gold-ink:#86671F;--gold-soft:rgba(201,165,92,.45);
+  --mute:#BDBDBD;--mute-2:#8C8C8C;--body-ink:#3A3A3A;--line:#E8E8E8;--line-dk:#2B2B2B;
+  --glass:rgba(18,18,18,.24);--shade:rgba(0,0,0,.5);--photo:#EEE;
+  --f-body:"Jost","Futura","Century Gothic",sans-serif;
+  --f-wide:"Syncopate","Michroma","Eurostile",sans-serif;
+  --g:clamp(64px,6.4vw,120px);
+  --ease:cubic-bezier(.2,.8,.1,1);
+  color-scheme:light;
+}
+@media (max-width:600px){:root{--g:22px}}
+*{box-sizing:border-box}
+html{background:var(--ink)}
+body{margin:0;background:var(--ink);color:var(--ink);font-family:var(--f-body);font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.wrap{width:100%;max-width:1680px;margin:0 auto;padding-left:max(var(--g),env(safe-area-inset-left,0px));padding-right:max(var(--g),env(safe-area-inset-right,0px))}
+.wide{font-family:var(--f-wide);font-weight:400;text-transform:uppercase;letter-spacing:.04em}
+.cap{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
+.gold{color:var(--gold-ink)}
+.dark{background:var(--ink);color:var(--paper)}
+.dark .gold{color:var(--gold)}
+.light{background:var(--paper);color:var(--ink)}
+.h2{margin:0;font-size:clamp(26px,3vw,52px);line-height:1.12;text-wrap:balance}
+.body{margin:0;max-width:34em;font-size:16px;line-height:1.8;font-weight:300}
+.light .body{color:var(--body-ink)}
+.dark .body{color:var(--mute)}
+.band{padding-block:clamp(72px,8vw,130px)}
+
+/* brand row (no menu) */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:clamp(68px,9vh,96px)}
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--paper)}
+.brand img{width:30px;height:30px;filter:invert(1)}
+.brand .cap{transition:color .35s}
+a.brand:hover .cap{color:var(--gold)}
+.top .tag{color:var(--mute-2)}
+
+/* buttons and arrow links */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:54px;padding:0 34px;border:1px solid var(--ink);background:transparent;color:var(--ink);text-decoration:none;font:inherit;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:background .35s,color .35s,border-color .35s}
+.btn svg{transition:transform .5s var(--ease)}
+.btn:hover svg{transform:translateX(6px)}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.solid:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.lnk{display:inline-flex;align-items:center;gap:18px;min-height:44px;text-decoration:none;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:inherit;transition:color .35s}
+.lnk svg{width:46px;transition:width .5s var(--ease)}
+.lnk:hover{color:var(--gold-ink)}
+.dark .lnk:hover{color:var(--gold)}
+.lnk:hover svg{width:70px}
+.vw{flex:none;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);color:var(--gold-ink);transition:background .35s,border-color .35s,color .35s}
+
+/* figures */
+.stats{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:520px}
+.stats>div{display:flex;flex-direction:column;justify-content:flex-end}
+.stats dt{color:var(--mute-2);font-size:10px;line-height:1.5}
+.stats dd{margin:12px 0 0;font-size:clamp(20px,2vw,32px)}
+.stats.words dd{font-size:clamp(12px,1.05vw,16px);line-height:1.45}
+
+/* HOME hero */
+.hero{background:var(--ink);color:var(--paper)}
+.frame{position:relative;min-height:clamp(600px,84svh,920px);border:1px solid var(--gold);overflow:hidden;display:flex;flex-direction:column;isolation:isolate}
+.hbg{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 60%;z-index:-3;filter:brightness(.82);animation:settle 2.4s var(--ease) both}
+.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--shade),transparent 45%);z-index:-2}
+.glass{position:absolute;left:0;top:0;bottom:0;width:42%;background:var(--glass);-webkit-backdrop-filter:blur(16px) brightness(.72);backdrop-filter:blur(16px) brightness(.72);border-right:1px solid var(--gold);z-index:-1;animation:tin 1.2s var(--ease) both}
+.frame .top{padding-left:max(7%,env(safe-area-inset-left,0px));padding-right:max(clamp(22px,3.4vw,56px),env(safe-area-inset-right,0px))}
+.ttl{flex:1;display:flex;flex-direction:column;justify-content:center;margin:0;padding:24px 0 24px max(7%,env(safe-area-inset-left,0px));font-weight:500;font-size:clamp(44px,min(10.4vw,17vh),220px);line-height:.92;letter-spacing:-.035em;text-transform:lowercase;white-space:nowrap;animation:tin 1.2s .1s var(--ease) both}
+.ttl span{display:block}
+.ttl .l2{padding-left:15%}
+.hinfo{width:42%;display:flex;flex-direction:column;gap:22px;padding:0 5% clamp(32px,5.5vh,60px) max(7%,env(safe-area-inset-left,0px));animation:fadeup 1s .35s var(--ease) both}
+.hinfo .body{font-size:clamp(15px,1.1vw,17px);color:var(--paper);opacity:.86}
+.hinfo .stats{padding-top:22px;border-top:1px solid var(--gold-soft)}
+.hinfo .stats dt{color:var(--mute)}
+
+/* HOME main-website section */
+.web{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(40px,6vw,120px);align-items:center}
+.web .txt{display:flex;flex-direction:column;gap:22px;align-items:flex-start;min-width:0}
+.web .btn{margin-top:12px}
+.webcard{display:block;text-decoration:none;color:inherit;min-width:0}
+.webcard .ph{overflow:hidden;aspect-ratio:16/9;max-width:100%;background:var(--photo)}
+.webcard .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s var(--ease)}
+.webcard:hover .ph img{transform:scale(1.06)}
+.webcard .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px;border-bottom:1px solid var(--line)}
+.webcard .bar .wide{font-size:clamp(11px,1vw,14px);overflow-wrap:anywhere;transition:color .35s}
+.webcard:hover .bar .wide{color:var(--gold-ink)}
+.webcard:hover .vw{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+
+/* HOME social section */
+.socband{padding-top:0}
+.socband .inner{border-top:1px solid var(--line);padding-top:clamp(64px,7vw,110px)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.head>*{min-width:0}
+.head>div>.cap{margin:0 0 18px}
+.tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.stile{position:relative;display:flex;flex-direction:column;gap:12px;height:100%;min-height:clamp(160px,13vw,200px);padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);background:var(--paper);transition:background .45s,color .45s}
+.stile .ic{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);color:var(--gold-ink);transition:border-color .45s,color .45s}
+.stile .txt{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.stile .nm{font-size:clamp(14px,1.3vw,20px)}
+.stile .hd{font-size:14px;color:var(--mute-2);overflow-wrap:anywhere}
+.stile .vw{position:absolute;top:16px;right:16px}
+.stile:hover{background:var(--ink);color:var(--paper)}
+.stile:hover .ic{border-color:var(--gold);color:var(--gold)}
+.stile:hover .vw{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+
+/* DIRECTOR hero */
+.dhero{padding-block:0 clamp(56px,7vw,110px)}
+.dgrid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,6vw,120px);align-items:center;padding-top:clamp(12px,2.5vw,36px)}
+.portrait{position:relative;margin:0;aspect-ratio:4/5;max-width:100%;max-height:72svh;overflow:hidden;border:1px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:clamp(28px,3vw,44px) 20px;isolation:isolate;animation:tin 1.2s var(--ease) both}
+.portrait .pbg{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;filter:blur(22px) brightness(.42);transform:scale(1.15);z-index:-2}
+.portrait::after{content:"";position:absolute;inset:12px;border:1px solid var(--gold-soft);z-index:-1;pointer-events:none}
+.portrait .em{width:34px;height:34px;filter:invert(1);opacity:.9}
+.mono{font-family:var(--f-wide);font-size:clamp(60px,7.6vw,128px);line-height:1;letter-spacing:.06em;color:var(--gold);text-transform:uppercase}
+.portrait figcaption{color:var(--mute)}
+.dtxt{min-width:0;animation:fadeup 1s .25s var(--ease) both}
+.dtxt .role{margin:0}
+.name{margin:22px 0 0;font-weight:500;font-size:clamp(52px,7.4vw,140px);line-height:.92;letter-spacing:-.035em;text-transform:lowercase}
+.name span{display:block}
+.name .l2{padding-left:15%}
+.dtxt .body{margin-top:34px}
+.dtxt .stats{margin-top:40px;padding-top:24px;border-top:1px solid var(--line-dk)}
+
+/* DIRECTOR focus */
+.quote{margin:0;max-width:30em}
+.quote p{margin:0;font-size:clamp(19px,1.6vw,26px);line-height:1.5;font-weight:300}
+.quote cite{display:block;margin-top:18px;font-style:normal}
+.focus{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,3vw,56px)}
+.focus li{border-top:1px solid var(--line);padding-top:28px;min-width:0}
+.focus .dia{display:block;width:10px;height:10px;transform:rotate(45deg);background:var(--gold)}
+.focus h3{margin:22px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.5}
+.focus p{margin:14px 0 0;font-size:15px;line-height:1.75;font-weight:300;color:var(--body-ink)}
+.back{margin-top:clamp(40px,5vw,72px);display:flex;flex-wrap:wrap;gap:8px 40px}
+
+/* footer (same as kennysinternational.com) */
+.foot{padding-block:clamp(90px,9vw,150px) 36px}
+.fgrid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px}
+.fbrand{display:flex;align-items:center;gap:16px}
+.fbrand img{width:48px;height:48px;filter:invert(1)}
+.fbrand .wide{font-size:15px;line-height:1.5}
+.ftag{margin:28px 0 0;font-size:15px}
+.fh{margin:0 0 20px}
+.flist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:15px;color:var(--mute)}
+.flist a,.faddr a{text-decoration:none;transition:color .3s}
+.flist a:hover,.faddr a:hover{color:var(--paper)}
+.faddr{margin:0;font-size:15px;line-height:1.7;color:var(--mute)}
+.faddr a{word-break:break-all}
+.fbar{margin-top:80px;padding-top:26px;border-top:1px solid var(--line-dk);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mute-2)}
+
+/* motion */
+@keyframes tin{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes settle{from{transform:scale(1.08)}to{transform:none}}
+@keyframes rise{from{transform:translateY(48px)}to{transform:none}}
+@supports (animation-timeline: view()){
+  .rise{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+  .rise.r2{animation-range:entry 8% entry 78%}
+  .rise.r3{animation-range:entry 16% entry 86%}
+}
+
+/* responsive */
+@media (max-width:1100px){
+  .fgrid{grid-template-columns:minmax(0,1fr)}
+  .web,.head{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:900px){
+  .glass{width:100%;border-right:0;background:rgba(18,18,18,.34)}
+  .hinfo{width:auto;padding-right:max(7%,env(safe-area-inset-right,0px))}
+  .ttl{font-size:clamp(40px,11.2vw,120px);padding-top:clamp(40px,10vh,90px)}
+  .ttl .l2{padding-left:10%}
+  .dgrid{grid-template-columns:minmax(0,1fr)}
+  .portrait{aspect-ratio:4/3;max-height:none}
+  .focus{grid-template-columns:minmax(0,1fr)}
+  .tiles{grid-template-columns:minmax(0,1fr)}
+  .stile{min-height:0;flex-direction:row;align-items:center;gap:20px;padding:22px 64px 22px 22px}
+  .stile .txt{margin-top:0}
+  .stile .vw{top:50%;transform:translateY(-50%)}
+}
+@media (max-width:600px){
+  .top .tag{display:none}
+  .stats dd{font-size:20px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}}
+</style>
+
+<section class="dark dhero" aria-labelledby="name-h">
+  <div class="wrap">
+    <header class="top"><a class="brand" href="/" aria-label="Kenny's International, home"><img src="/assets/emblem.png" alt=""><span class="cap">Kenny's International</span></a><span class="cap tag">Leadership</span></header>
+    <div class="dgrid">
+      <figure class="portrait" aria-label="John Doe, Marketing Director">
+        <img class="pbg" src="/assets/hero-boggi.jpg" alt="">
+        <img class="em" src="/assets/emblem.png" alt="">
+        <span class="mono" aria-hidden="true">JD</span>
+        <figcaption class="cap">Marketing Director</figcaption>
+      </figure>
+      <div class="dtxt">
+        <p class="cap gold role">Marketing Director · Kenny's International</p>
+        <h1 id="name-h" class="name" aria-label="John Doe"><span>john</span><span class="l2">doe</span></h1>
+        <p class="body">John Doe leads marketing for Kenny's International. He shapes how the group presents its watch, jewellery and fashion houses in Kinshasa, Lubumbashi, Kolwezi and Pointe-Noire, from store openings and private client events to the press and the group's social channels.</p>
+        <dl class="stats words"><div><dt class="cap">Department</dt><dd class="wide gold">Marketing</dd></div><div><dt class="cap">Office</dt><dd class="wide gold">Kinshasa</dd></div><div><dt class="cap">Distribution brands</dt><dd class="wide gold">21</dd></div></dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light band" aria-labelledby="focus-h">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="cap gold">The role</p><h2 id="focus-h" class="wide h2 rise">Areas of focus</h2></div>
+      <blockquote class="quote rise r2"><p>“Every house we carry has its own story. Our work is to tell it here, to clients who know craftsmanship.”</p><cite class="cap gold">John Doe</cite></blockquote>
+    </div>
+    <ul class="focus"><li class="rise r1"><span class="dia" aria-hidden="true"></span><h3 class="wide">Brand & campaigns</h3><p>Plans each season's campaigns with the partner houses and keeps every message true to both the house and Kenny's.</p></li><li class="rise r2"><span class="dia" aria-hidden="true"></span><h3 class="wide">Openings & events</h3><p>Leads store launches and private client evenings across the group, including at K-Galerie in Pointe-Noire.</p></li><li class="rise r3"><span class="dia" aria-hidden="true"></span><h3 class="wide">Press & digital</h3><p>Oversees press relations, the website and the group's Instagram, Facebook and LinkedIn channels.</p></li></ul>
+    <div class="back">
+      <a class="lnk" href="/">Kenny's International<svg height="10" viewBox="0 0 46 10" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M0 5h45M40 1l5 4-5 4"/></svg></a>
+      <a class="lnk" href="https://kennysinternational.com/" target="_blank" rel="noopener">kennysinternational.com<svg height="10" viewBox="0 0 46 10" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M0 5h45M40 1l5 4-5 4"/></svg></a>
+    </div>
+  </div>
+</section>
+
+
+<footer class="dark foot">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="fbrand"><img src="/assets/emblem.png" alt=""><span class="wide">Kenny's<br>International</span></div>
+        <p class="gold ftag">Sharing the luxury of your life since 1993.</p>
+      </div>
+      <nav aria-label="Footer">
+        <p class="cap gold fh">Explore</p>
+        <ul class="flist">
+          <li><a href="https://kennysinternational.com/about-us.html" target="_blank" rel="noopener">About us</a></li>
+          <li><a href="https://kennysinternational.com/distribution-brands.html" target="_blank" rel="noopener">Distribution brands</a></li>
+          <li><a href="https://kennysinternational.com/k-galerie.html" target="_blank" rel="noopener">K-Galerie</a></li>
+          <li><a href="https://kennysinternational.com/franchise-retail.html" target="_blank" rel="noopener">Franchise retail</a></li>
+          <li><a href="https://kennysinternational.com/press" target="_blank" rel="noopener">Press</a></li>
+          <li><a href="https://kennysinternational.com/contact.html" target="_blank" rel="noopener">Contact</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="cap gold fh">Head office</p>
+        <p class="faddr">124 Boulevard du 30 Juin, Gombe, Kinshasa<br>Royal building, ref. K Lounge, opposite Interpol<br><a href="tel:+243818592999">+243 818 592 999</a><br><a href="mailto:serviceclient@kennysinternational.com">serviceclient@kennysinternational.com</a></p>
+      </div>
+      <div>
+        <p class="cap gold fh">Follow</p>
+        <ul class="flist">
+          <li><a href="https://www.instagram.com/kennysinternational/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/KennysInternationals" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/company/kennysinternational/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbar"><span>© 2026 Kenny's Group. All rights reserved.</span><span>Kinshasa, Lubumbashi, Kolwezi, Pointe-Noire</span></div>
+  </div>
+</footer>
+</body>
+</html>
