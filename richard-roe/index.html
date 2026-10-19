@@ -15,7 +15,7 @@
   /* Layout: gold-framed black opener, white content bands, black footer; the gold hairline is the one ornament */
   --ink:#000;--paper:#fff;--gold:#C9A55C;--gold-ink:#86671F;--gold-soft:rgba(201,165,92,.45);
   --mute:#BDBDBD;--mute-2:#8C8C8C;--body-ink:#3A3A3A;--line:#E8E8E8;--line-dk:#2B2B2B;
-  --glass:rgba(18,18,18,.24);--shade:rgba(0,0,0,.5);--photo:#EEE;
+  --glass:rgba(18,18,18,.24);--shade:rgba(0,0,0,.5);--shade-2:rgba(0,0,0,.72);--photo:#EEE;--tile-dk:#0B0B0B;
   --f-body:"Jost","Futura","Century Gothic",sans-serif;
   --f-wide:"Syncopate","Michroma","Eurostile",sans-serif;
   --g:clamp(64px,6.4vw,120px);
@@ -28,6 +28,8 @@ html{background:var(--ink)}
 body{margin:0;background:var(--ink);color:var(--ink);font-family:var(--f-body);font-size:16px;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 img{display:block;max-width:100%}
+[hidden]{display:none !important}
+html:has(dialog[open]){overflow:hidden}
 :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 .wrap{width:100%;max-width:1680px;margin:0 auto;padding-left:max(var(--g),env(safe-area-inset-left,0px));padding-right:max(var(--g),env(safe-area-inset-right,0px))}
 .wide{font-family:var(--f-wide);font-weight:400;text-transform:uppercase;letter-spacing:.04em}
@@ -111,9 +113,9 @@ a.brand:hover .cap{color:var(--gold)}
 .stile .nm{font-size:clamp(14px,1.3vw,20px)}
 .stile .hd{font-size:14px;color:var(--mute-2);overflow-wrap:anywhere}
 .stile .vw{position:absolute;top:16px;right:16px}
-.stile:hover{background:var(--ink);color:var(--paper)}
-.stile:hover .ic{border-color:var(--gold);color:var(--gold)}
-.stile:hover .vw{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+a.stile:hover{background:var(--ink);color:var(--paper)}
+a.stile:hover .ic{border-color:var(--gold);color:var(--gold)}
+a.stile:hover .vw{background:var(--gold);border-color:var(--gold);color:var(--ink)}
 
 /* DIRECTOR hero */
 .dhero{padding-block:0 clamp(56px,7vw,110px)}
@@ -142,6 +144,45 @@ a.brand:hover .cap{color:var(--gold)}
 .focus h3{margin:22px 0 0;font-size:clamp(13px,1.05vw,15px);line-height:1.5}
 .focus p{margin:14px 0 0;font-size:15px;line-height:1.75;font-weight:300;color:var(--body-ink)}
 .back{margin-top:clamp(40px,5vw,72px);display:flex;flex-wrap:wrap;gap:8px 40px}
+.dark .btn{border-color:var(--gold);color:var(--paper)}
+.dark .btn:hover{background:var(--gold);color:var(--ink)}
+
+/* DIRECTOR gallery: masonry columns, grows with any number of photos */
+.gal{border-bottom:1px solid var(--line-dk)}
+.gal .count{display:block;margin-top:18px}
+.masonry{list-style:none;margin:0;padding:0;columns:3 280px;column-gap:16px}
+.masonry li{break-inside:avoid;margin:0 0 16px}
+.gi{position:relative;display:block;overflow:hidden;background:var(--tile-dk);color:var(--paper);text-decoration:none}
+.gi img{width:100%;height:auto;transition:transform 1.3s var(--ease)}
+.gi::after{content:"";position:absolute;inset:0;border:1px solid transparent;transition:border-color .35s;pointer-events:none}
+.gi:hover img,.gi:focus-visible img{transform:scale(1.05)}
+.gi:hover::after,.gi:focus-visible::after{border-color:var(--gold)}
+.gcap{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 16px;background:linear-gradient(0deg,var(--shade-2),transparent);font-size:13px;line-height:1.4;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .5s var(--ease)}
+.gi:hover .gcap,.gi:focus-visible .gcap{opacity:1;transform:none}
+@media (hover:none){.gcap{opacity:1;transform:none}}
+.gmore{display:flex;justify-content:center;margin-top:clamp(28px,3.5vw,48px)}
+.gal .back{padding-top:32px;border-top:1px solid var(--line-dk)}
+
+/* photo viewer */
+.lb{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--ink);color:var(--paper);font-family:var(--f-body)}
+.lb::backdrop{background:var(--ink)}
+.lb[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.lb-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-left:max(clamp(16px,3vw,48px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,3vw,48px),env(safe-area-inset-right,0px))}
+.lb-bar.t{padding-block:calc(12px + env(safe-area-inset-top,0px)) 12px;border-bottom:1px solid var(--line-dk)}
+.lb-bar.b{padding-block:16px calc(20px + env(safe-area-inset-bottom,0px))}
+.lb-count{color:var(--gold);font-variant-numeric:tabular-nums}
+.lb-x{display:inline-flex;align-items:center;gap:12px;min-height:44px;padding:0;background:none;border:0;color:var(--paper);font:inherit;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;cursor:pointer;transition:color .3s}
+.lb-x:hover{color:var(--gold)}
+.lb-fig{margin:0;min-height:0;display:flex;align-items:center;justify-content:center;padding:clamp(12px,2vw,28px) clamp(12px,4vw,64px);touch-action:pan-y}
+.lb-img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;opacity:0;transition:opacity .45s ease}
+.lb-img.on{opacity:1}
+.lb-cap{margin:0;min-width:0;font-size:14px;line-height:1.5;color:var(--mute)}
+.lb-nav{display:flex;gap:14px;flex:none}
+.arr{width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .3s,color .3s}
+.arr.p{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.arr.n{background:var(--gold);border:1px solid var(--gold);color:var(--ink)}
+.arr.p:hover{background:var(--gold);color:var(--ink)}
+.arr.n:hover{background:transparent;color:var(--gold)}
 
 /* footer (same as kennysinternational.com) */
 .foot{padding-block:clamp(90px,9vw,150px) 36px}
@@ -221,12 +262,92 @@ a.brand:hover .cap{color:var(--gold)}
       <blockquote class="quote rise r2"><p>“Clients see the finished store. Our work is everything that has to happen before the doors open.”</p><cite class="cap gold">Richard Roe</cite></blockquote>
     </div>
     <ul class="focus"><li class="rise r1"><span class="dia" aria-hidden="true"></span><h3 class="wide">Store operations</h3><p>Sets the standards every store follows, from opening routines to visual presentation and security.</p></li><li class="rise r2"><span class="dia" aria-hidden="true"></span><h3 class="wide">Supply & logistics</h3><p>Coordinates shipments from the houses to Kinshasa and Pointe-Noire, and keeps stock moving between stores.</p></li><li class="rise r3"><span class="dia" aria-hidden="true"></span><h3 class="wide">Sites & projects</h3><p>Oversees K-Galerie and new store fit-outs, from the first plans to the day the doors open.</p></li></ul>
+  </div>
+</section>
+
+<section class="light band socband" aria-labelledby="soc-h">
+  <div class="wrap"><div class="inner">
+    <div class="head">
+      <div><p class="cap gold">Follow Richard</p><h2 id="soc-h" class="wide h2 rise">On social media</h2></div>
+      <p class="body rise r2">News, events and moments from Richard's work at Kenny's International.</p>
+    </div>
+    <ul class="tiles"><li><div class="stile rise r1"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 10v8M7 6v.01M11 18v-5a3 3 0 0 1 6 0v5M11 10v8"/></svg></span><span class="txt"><span class="nm wide">LinkedIn</span><span class="hd">Richard Roe</span></span></div></li><li><div class="stile rise r2"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></span><span class="txt"><span class="nm wide">Instagram</span><span class="hd">@richardroe</span></span></div></li><li><div class="stile rise r3"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></span><span class="txt"><span class="nm wide">Facebook</span><span class="hd">Richard Roe</span></span></div></li></ul>
+  </div></div>
+</section>
+
+<section class="dark band gal" aria-labelledby="gal-h">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="cap gold">Gallery</p><h2 id="gal-h" class="wide h2 rise">In pictures</h2></div>
+      <p class="body rise r2">The sites, stores and openings Richard's teams prepare across the group.<span class="cap gold count">9 photos</span></p>
+    </div>
+    <ul class="masonry" data-step="9"><li><a class="gi" href="/assets/gallery/richard-roe/01-k-galerie.jpg" data-cap="K-Galerie, Pointe-Noire" aria-label="Open photo 1 of 9: K-Galerie, Pointe-Noire"><img src="/assets/gallery/richard-roe/01-k-galerie-t.jpg" width="720" height="407" alt="K-Galerie, Pointe-Noire" loading="lazy" decoding="async"><span class="gcap" aria-hidden="true">K-Galerie, Pointe-Noire</span></a></li><li><a class="gi" href="/assets/gallery/richard-roe/02-mango-kyra.jpg" data-cap="Mango and Kyra, Congo-Brazzaville" aria-label="Open photo 2 of 9: Mango and Kyra, Congo-Brazzaville"><img src="/assets/gallery/richard-roe/02-mango-kyra-t.jpg" width="720" height="480" alt="Mango and Kyra, Congo-Brazzaville" loading="lazy" decoding="async"><span class="gcap" aria-hidden="true">Mango and Kyra, Congo-Brazzaville</span></a></li><li><a class="gi" href="/assets/gallery/richard-roe/03-kennys-building.jpg" data-cap="The Kenny's building, Kinshasa" aria-label="Open photo 3 of 9: The Kenny's building, Kinshasa"><img src="/assets/gallery/richard-roe/03-kennys-building-t.jpg" width="720" height="901" alt="The Kenny's building, Kinshasa" loading="lazy" decoding="async"><span class="gcap" aria-hidden="true">The Kenny's building, Kinshasa</span></a></li><li><a class="gi" href="/assets/gallery/richard-roe/04-lubumbashi.jpg" data-cap="Kenny's International, Lubumbashi" aria-label="Open photo 4 of 9: Kenny's International, Lubumbashi"><img src="/assets/gallery/richard-roe/04-lubumbashi-t.jpg" width="720" height="480" alt="Kenny's International, Lubumbashi" loading="lazy" decoding="async"><span class="gcap" aria-hidden="true">Kenny's International, Lubumbashi</span></a></li><li><a class="gi" href="/assets/gallery/richard-roe/05-okaidi.jpg" data-cap="Okaïdi opening, Kinshasa" aria-label="Open photo 5 of 9: Okaïdi opening, Kinshasa"><img src="/assets/gallery/richard-roe/05-okaidi-t.jpg" width="720" height="461" alt="Okaïdi opening, Kinshasa" loading="lazy" decoding="async"><span class="gcap" aria-hidden="true">Okaïdi opening, Kinshasa</span></a></li><li><a class="gi" href="/assets/gallery/richard-roe/06-aldo.jpg" data-cap="ALDO opening, Kinshasa" aria-label="Open photo 6 of 9: ALDO opening, Kinshasa"><img src="/assets/gallery/richard-roe/06-aldo-t.jpg" width="720" height="480" alt="ALDO opening, Kinshasa" loading="lazy" decoding="async"><span class="gcap" aria-hidden="true">ALDO opening, Kinshasa</span></a></li><li hidden><a class="gi" href="/assets/gallery/richard-roe/07-flagship.jpg" data-cap="Kenny's flagship, Kinshasa" aria-label="Open photo 7 of 9: Kenny's flagship, Kinshasa"><img src="/assets/gallery/richard-roe/07-flagship-t.jpg" width="720" height="567" alt="Kenny's flagship, Kinshasa" loading="lazy" decoding="async"><span class="gcap" aria-hidden="true">Kenny's flagship, Kinshasa</span></a></li><li hidden><a class="gi" href="/assets/gallery/richard-roe/08-kiko.jpg" data-cap="Kiko Milano opening, Kinshasa" aria-label="Open photo 8 of 9: Kiko Milano opening, Kinshasa"><img src="/assets/gallery/richard-roe/08-kiko-t.jpg" width="720" height="480" alt="Kiko Milano opening, Kinshasa" loading="lazy" decoding="async"><span class="gcap" aria-hidden="true">Kiko Milano opening, Kinshasa</span></a></li><li hidden><a class="gi" href="/assets/gallery/richard-roe/09-boggi.jpg" data-cap="Boggi Milano store" aria-label="Open photo 9 of 9: Boggi Milano store"><img src="/assets/gallery/richard-roe/09-boggi-t.jpg" width="720" height="381" alt="Boggi Milano store" loading="lazy" decoding="async"><span class="gcap" aria-hidden="true">Boggi Milano store</span></a></li></ul>
+    <div class="gmore"><button class="btn" type="button"><span>Show <span class="n">3</span> more photos</span><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h21M16 1l5 5-5 5"/></svg></button></div>
     <div class="back">
       <a class="lnk" href="/">Kenny's International<svg height="10" viewBox="0 0 46 10" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M0 5h45M40 1l5 4-5 4"/></svg></a>
       <a class="lnk" href="https://kennysinternational.com/" target="_blank" rel="noopener">kennysinternational.com<svg height="10" viewBox="0 0 46 10" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M0 5h45M40 1l5 4-5 4"/></svg></a>
     </div>
   </div>
 </section>
+<dialog class="lb" aria-label="Richard's photos">
+  <div class="lb-bar t"><span class="cap lb-count">01 / 09</span><button class="lb-x" type="button">Close<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg></button></div>
+  <figure class="lb-fig"><img class="lb-img" alt=""></figure>
+  <div class="lb-bar b"><p class="lb-cap"></p><div class="lb-nav"><button class="arr p lb-prev" type="button" aria-label="Previous photo"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M22 6H1M6 1L1 6l5 5"/></svg></button><button class="arr n lb-next" type="button" aria-label="Next photo"><svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h21M16 1l5 5-5 5"/></svg></button></div></div>
+</dialog>
+
+<script>
+(function(){
+  var list=document.querySelector('.masonry'), dlg=document.querySelector('.lb');
+  if(!list||!dlg) return;
+  var items=[].slice.call(list.querySelectorAll('.gi'));
+  var step=+list.getAttribute('data-step')||9;
+  var more=document.querySelector('.gmore');
+  function refreshMore(){
+    if(!more) return;
+    var left=list.querySelectorAll('li[hidden]').length;
+    more.hidden=!left;
+    var n=more.querySelector('.n'); if(n) n.textContent=Math.min(left,step);
+  }
+  if(more) more.querySelector('button').addEventListener('click',function(){
+    var hid=[].slice.call(list.querySelectorAll('li[hidden]')).slice(0,step);
+    hid.forEach(function(li){li.hidden=false;});
+    if(hid[0]) hid[0].querySelector('a').focus();
+    refreshMore();
+  });
+  refreshMore();
+  var img=dlg.querySelector('.lb-img'), cap=dlg.querySelector('.lb-cap'), cnt=dlg.querySelector('.lb-count'), fig=dlg.querySelector('.lb-fig');
+  var cur=0;
+  function pad(n){return (n<10?'0':'')+n;}
+  function show(k){
+    cur=(k+items.length)%items.length;
+    var a=items[cur], t=a.querySelector('img');
+    img.classList.remove('on');
+    img.onload=function(){img.classList.add('on');};
+    img.src=a.getAttribute('href'); img.alt=t.alt;
+    if(img.complete) img.classList.add('on');
+    cap.textContent=a.getAttribute('data-cap')||'';
+    cnt.textContent=pad(cur+1)+' / '+pad(items.length);
+    [1,-1].forEach(function(o){var pre=new Image(); pre.src=items[(cur+o+items.length)%items.length].getAttribute('href');});
+  }
+  function open(k){show(k); if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');}
+  function close(){if(dlg.close) dlg.close(); else dlg.removeAttribute('open');}
+  items.forEach(function(a,k){a.addEventListener('click',function(e){e.preventDefault();open(k);});});
+  dlg.querySelector('.lb-prev').addEventListener('click',function(){show(cur-1);});
+  dlg.querySelector('.lb-next').addEventListener('click',function(){show(cur+1);});
+  dlg.querySelector('.lb-x').addEventListener('click',close);
+  fig.addEventListener('click',function(e){if(e.target===fig) close();});
+  dlg.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){e.preventDefault();show(cur-1);}
+    if(e.key==='ArrowRight'){e.preventDefault();show(cur+1);}
+  });
+  var x0=null;
+  fig.addEventListener('pointerdown',function(e){x0=e.clientX;});
+  fig.addEventListener('pointerup',function(e){
+    if(x0===null) return; var dx=e.clientX-x0; x0=null;
+    if(Math.abs(dx)>50) show(dx<0?cur+1:cur-1);
+  });
+})();
+</script>
 
 
 <footer class="dark foot">
