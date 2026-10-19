@@ -1,0 +1,4 @@
+site/*.html
+site/assets/gallery/
+deploy/
+__pycache__/
